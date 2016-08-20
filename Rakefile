@@ -10,12 +10,13 @@ desc 'outputs hello to the terminal'
   end
 end
 
+task :environment do
+  require_relative './config/environment'
+end
+
 desc 'migrate changes to your database' 
 namespace :db do 
-  task :environment do
-    require_relative './config/environment'
-  end
-  
+
   task :migrate => :environment do 
     Student.create_table
   end
@@ -27,9 +28,6 @@ namespace :db do
 end
 
 desc 'drop into the Pry console'
-task :environment do
-  require_relative './config/environment'
-end
 task :console => :environment do
   Pry.start 
 end
